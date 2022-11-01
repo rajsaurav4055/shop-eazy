@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
+from django.db import connection
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from shopeazy.models import User
+
 
 # Create your views here.
 def home(request):
@@ -10,44 +11,52 @@ def home(request):
 
 def signup(request):
     if request.method == "POST":
-        username = request.POST['username']
-        firstname = request.POST.get('firstname',False)
-        lastname = request.POST.get('lastname', False)
-        email = request.POST.get('email', False)
-        password = request.POST.get('password', False)
-        confirmpassword = request.POST.get('confirmpassword',False)
-
-        myuser = User.objects.create_user(username, email, password)
-        myuser.first_name = firstname
-        myuser.last_name = lastname
-
-        myuser.save()
-
+        userid = request.POST.get('userid')
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        address = request.POST.get('address')
+        phoneno = request.POST.get('phoneno')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirmpassword = request.POST.get('confirmpassword')
+        
+        if User.objects.filter(userid = userid):
+            messages.error(request, "User ID already exists!")
+            return redirect('home')
+        if User.objects.filter(email = email):
+            messages.error(request, "Email already registered!")
+            return redirect('home')
+        if password != confirmpassword:
+           messages.error(request, "Password doesn't match!")
+           return redirect('home')
+        if len(phoneno)!= 10:
+            messages.error(request, "Enter correct 10 digit phone number")
+            return redirect('home')
+        
+        user = User.objects.create(userid = userid,fname = fname,lname = lname,email = email,address = address,phoneno = phoneno,password = password)
+        user.save()
         messages.success(request, "You are successfully registered! Thank You.")
-
         return redirect('signin')
+        
 
     return render(request, "shopeazy/signup.html")
 
 def signin(request):
     if request.method == 'POST':
-        username = request.POST.get('username',False)
-        password = request.POST.get('password', False)
-
-        user = authenticate(username = username, password = password)
-
-        if user is not None:
-            login(request, user)
-            firstname = user.first_name
-            return render(request, "shopeazy/index.html", {'firstname' : firstname})
-
+        userid = request.POST.get('userid')
+        password = request.POST.get('password')
+        
+        user = User.objects.get(userid = userid)
+        
+        if user.userid == userid and user.password == password:
+            firstname = user.fname
+            return render(request, "shopeazy/index.html", {'firstname': firstname})
         else:
-            messages.error(request, "Bad Credentials!")
+            messages.error(request, "Wrong Credentials. Please try again!")
             return redirect('home')
-
+        
     return render(request, "shopeazy/signin.html")
 
 def signout(request):
-    logout(request)
     messages.success(request, "Logged Out Successfully!")
     return redirect('home')            
