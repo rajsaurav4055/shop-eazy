@@ -11,3 +11,26 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     type = models.CharField(max_length=2, default ='C')
     
+class Product(models.Model):
+    productid = models.IntegerField(primary_key = True)
+    pname = models.CharField(max_length=255)
+    price = models.FloatField()
+    category = models.CharField(max_length=255)
+    specifications = models.CharField(max_length=255)
+
+# id is auto-generated and incremented by django
+class Order(models.Model):
+    userid = models.ForeignKey(User, on_delete = models.CASCADE)
+    productid = models.ForeignKey(Product, on_delete = models.CASCADE)
+    orderdate = models.DateTimeField(auto_now_add = True)
+    orderstatus = models.CharField(max_length=255)
+    finalprice = models.FloatField()
+
+# promo code is of 5 letters
+#auto generated id == primary key
+class Cart(models.Model):
+    productlist = models.CharField(max_length=255)
+    promocode = models.CharField(max_length=5)
+    
+    
+    
