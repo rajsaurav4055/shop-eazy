@@ -59,4 +59,13 @@ def signin(request):
 
 def signout(request):
     messages.success(request, "Logged Out Successfully!")
-    return redirect('home')            
+    return redirect('home')    
+
+def homepage(request):
+    pass
+
+def order(request):
+    pass
+
+def cart(request):
+    pass
