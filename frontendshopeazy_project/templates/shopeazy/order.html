@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>ShopEazy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <style>
+    nav{
+      background-color: rgb(104, 106, 108);
+    }
+    .one-edge-shadow {
+              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
+}
+.display-8{
+  font-weight: 200;
+  font-size: 30px;
+  font-colour: $teal-200;
+}
+  </style>
+</head>
+
+<body>
+  <!-- navbar -->
+
+<nav class="one-edge-shadow
+  navbar navbar-light
+  sticky-top navbar 
+  navbar-expand-lg
+  text-white">
+    <a class="navbar-brand ms-3 text-dark " href="/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <img src="https://github.com/rajsaurav4055/track-group1/blob/dev/frontendshopeazy_project/templates/shopeazy/Logo.png?raw=true" width="75px"
+    height="65px">ShopEazy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/store">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+          </ul>
+
+
+<!--style="width:50px;height:50px color:text-light;"-->
+
+      <ul class=" navbar-nav my-2 my-lg-0">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/cart">Cart 
+            <span class="badge badge-success"><!--{{request.session.cart.keys|length}}--></span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+
+        <!--{% if request.session.customer %}-->
+        
+        <li class="nav-item active ">
+          <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active ">
+          <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+        </li>
+        <!--
+        {% else %}
+       
+        <li class="nav-item active">
+          <a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+        -->
+
+
+      </ul>
+
+
+    </div>
+  </nav>
+  <!---->
+  <!--{% block content %}
+  {% load cart %}
+{% load custom_filter %}-->
+<div class="container">
+  <!--
+  <div class="border rounded p-4 m-4">
+   
+  <hr>
+  </div>
+  -->
+   <div class="border rounded p-4 m-4">
+        <p class="display-10 pl-10 ml-10">Thanks for your order, Rohit!<!--{customer.first_name}--></p>
+        <hr>
+        <p class="display-4 pl-4 ml-4">Order</p>
+        <table class="table">
+          <!--
+            <thead>
+                <tr>
+                    <th>Sno.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            -->
+
+            <thead>
+              <tr>
+                  <th>Sno.</th>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Details</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+              </tr>
+          </thead>
+            <tbody>
+                
+                <!--{% for order in orders %}-->
+                <tr>
+                    <td>1.<!--{{forloop.counter}}--></td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="https://m.media-amazon.com/images/I/61+btxzpfDL._AC_SX679_.jpg" alt=""></td><!--{{order.product.image.url}}-->
+                    <td>Sennheiser headphones<!--{{order.product.name}}--></td>
+                    <td>Black<!--{{order.date}}--></td>
+                    <td>Over Ear Wired<!--{{order.price|currency}}--></td>
+                    <td>1<!--{{order.quantity}}--></td>
+                    <td>$99.95<!--{{order.quantity|multiply:order.price|currency}}--></td>
+                    <!--{% if order.status %}-->
+                    <!--<td><small class="badge badge-success">Completed</small></td>-->
+                    <!--{%else%}-->
+                    <!--<td><small class="badge badge-warning">Pending</small></td>-->
+                    <!--{% endif %}-->
+                </tr>
+
+                <br>
+
+                <tr>
+                  <td>2.<!--{{forloop.counter}}--></td>
+                  <td><img style="height: 80px;" class="rounded-circle" src="https://m.media-amazon.com/images/I/71-5d2Z2wuL._AC_UL640_FMwebp_QL65_.jpg" alt=""></td>
+                  <td>Lacoste Mens Long Sleeve<!--{{order.product.name}}--></td>
+                  <td>Blue<!--{{order.date}}--></td>
+                  <td>Winter Sweater<!--{{order.price|currency}}--></td>
+                  <td>1<!--{{order.quantity}}--></td>
+                  <td>$100.00<!--{{order.quantity|multiply:order.price|currency}}--></td>
+                  <!--{% if order.status %}-->
+                  <!--<td><small class="badge badge-success">Completed</small></td>-->
+                  <!--{%else%}-->
+                  <!--<td><small class="badge badge-warning">Pending</small></td>-->
+                  <!--{% endif %}-->
+              </tr>
+
+                <!--{% endfor %}-->
+               
+            </tbody>
+
+        </table>
+        <hr>
+
+        <h4>Order Details</h4>
+        <div class="d-flex justify-content-between pt-2">
+        <p class="fw-bold mb-0"></p>
+        <p class="fw-bold mb-0"><span class="fw-bold me-4">Total: </span> $199.95</p>
+        </div>
+
+        <div class="d-flex justify-content-between pt-0.5">
+          <p class="fw-bold mb-0">Invoice Number: 123<!--{{order.id}}--></p>
+          <p class="fw-bold mb-0"><span class="fw-bold me-4">Discount: </span> $19.00</p>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-0">Invoice Date:  1st Nov 2022</p>
+          <p class="fw-bold mb-0"><span class="fw-bold me-4">GST 18%: </span> 123</p>
+        </div>
+
+        <div class="d-flex justify-content-between mb-5">
+          <p class="fw-bold mb-0">Coupon Code: FLAT20</p>
+          <p class="fw-bold mb-0"><span class="fw-bold me-4">Delivery Charges: </span> Free</p>
+        </div>
+      </div>
+      <div class="card-footer border-0 px-4 py-2"
+        style="background-color: rgb(104, 106, 108); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+        <h6 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Total
+          paid: <span class="h2 mb-0 ms-2"> $229.95</span></h6>
+          <img src="https://github.com/rajsaurav4055/track-group1/blob/dev/frontendshopeazy_project/templates/shopeazy/Logo.png?raw=true" width="150px"
+    height="100px">
+      </div>
+
+       
+   </div>
+</div>
+  <!--{% endblock %}-->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
