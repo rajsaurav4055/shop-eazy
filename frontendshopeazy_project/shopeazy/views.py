@@ -83,4 +83,4 @@ def cart(request):
     return render(request, "shopeazy/cart.html")
 
 def product(request):
-    pass
+    return render(request, "shopeazy/product.html")
