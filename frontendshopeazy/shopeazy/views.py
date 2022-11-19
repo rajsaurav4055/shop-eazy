@@ -69,3 +69,6 @@ def order(request):
 
 def cart(request):
     pass
+
+def product(request):
+    return render(request, "shopeazy/product.html")
