@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db import connection
 from django.contrib import messages
-from shopeazy.models import User
+from shopeazy.models import User, Product, Order, Cart
 
 
 # Create your views here.
@@ -49,8 +49,9 @@ def signin(request):
         user = User.objects.get(userid = userid)
         
         if user.userid == userid and user.password == password:
-            firstname = user.fname
-            return render(request, "shopeazy/index.html", {'firstname': firstname})
+            context ={}
+            context['user'] = user
+            return render(request, "shopeazy/index.html", context)
         else:
             messages.error(request, "Wrong Credentials. Please try again!")
             return redirect('home')
@@ -58,14 +59,28 @@ def signin(request):
     return render(request, "shopeazy/signin.html")
 
 def signout(request):
+    request.session.clear()
     messages.success(request, "Logged Out Successfully!")
-    return redirect('home')    
+    return redirect('homepage')    
+
+def category_homepage(request, category):
+    print(category)
+    context={}
+    products = Product.objects.filter(category = category)
+    context['products'] = products
+    return render(request, "shopeazy/homepage.html",context)
 
 def homepage(request):
-    pass
+    context={}
+    products = Product.objects.all()
+    context['products'] = products
+    return render(request, "shopeazy/homepage.html",context)
 
 def order(request):
     pass
 
 def cart(request):
+    return render(request, "shopeazy/cart.html")
+
+def product(request):
     pass
