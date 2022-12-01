@@ -79,7 +79,7 @@ def homepage(request):
     return render(request, "shopeazy/homepage.html",context)
 
 def order(request):
-    pass
+    return render(request, "shopeazy/order.html")
 
 def add_to_cart(request):
     cart_p={}
@@ -116,4 +116,4 @@ def cart(request):
         return render(request, "shopeazy/cart.html",{'cart_data':'','totalitems':0,'total_amt':total_amt})
 
 def product(request):
-    pass
+    return render(request, "shopeazy/product.html")

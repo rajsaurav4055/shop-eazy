@@ -1,0 +1,133 @@
+{% extends 'shopeazy/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+  <!--
+  <div class="border rounded p-4 m-4">
+   
+  <hr>
+  </div>
+  -->
+   <div class="border rounded p-4 m-4">
+        <p class="display-10 pl-10 ml-10">Thanks for your order, Rohit!<!--{customer.first_name}--></p>
+        <hr>
+        <p class="display-4 pl-4 ml-4">Order</p>
+        <table class="table">
+          <!--
+            <thead>
+                <tr>
+                    <th>Sno.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            -->
+
+            <thead>
+              <tr>
+                  <th>Sno.</th>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Details</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+              </tr>
+          </thead>
+            <tbody>
+                
+                <!--{% for order in orders %}-->
+                <tr>
+                    <td>1.<!--{{forloop.counter}}--></td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="https://m.media-amazon.com/images/I/61+btxzpfDL._AC_SX679_.jpg" alt=""></td><!--{{order.product.image.url}}-->
+                    <td>Sennheiser headphones<!--{{order.product.name}}--></td>
+                    <td>Black<!--{{order.date}}--></td>
+                    <td>Over Ear Wired</td>
+                    <td>1<!--{{order.quantity}}--></td>
+                    <td>$99.95<!--{{o}}--></td>
+                    <!--{% if order.status %}-->
+                    <!--<td><small class="badge badge-success">Completed</small></td>-->
+                    <!--{%else%}-->
+                    <!--<td><small class="badge badge-warning">Pending</small></td>-->
+                    <!--{% endif %}-->
+                </tr>
+
+                <br>
+
+                <tr>
+                  <td>2.<!--{{forloop.counter}}--></td>
+                  <td><img style="height: 80px;" class="rounded-circle" src="https://m.media-amazon.com/images/I/71-5d2Z2wuL._AC_UL640_FMwebp_QL65_.jpg" alt=""></td>
+                  <td>Lacoste Mens Long Sleeve<!--{{order.product.name}}--></td>
+                  <td>Blue<!--{{order.date}}--></td>
+                  <td>Winter Sweater<!----></td>
+                  <td>1<!--{{order.quantity}}--></td>
+                  <td>$100.00<!--{{o}}--></td>
+                  <!--{% if order.status %}-->
+                  <!--<td><small class="badge badge-success">Completed</small></td>-->
+                  <!--{%else%}-->
+                  <!--<td><small class="badge badge-warning">Pending</small></td>-->
+                  <!--{% endif %}-->
+              </tr>
+
+                <!--{% endfor %}-->
+               
+            </tbody>
+
+        </table>
+        <hr>
+
+        <h4>Order Details</h4>
+        <div class="d-flex justify-content-between pt-2">
+        <p class="fw-bold mb-0"></p>
+        <p class="fw-bold mb-0"><span class="fw-bold me-4">Total: </span> $199.95</p>
+        </div>
+
+        <div class="d-flex justify-content-between pt-0.5">
+          <p class="fw-bold mb-0">Invoice Number: 123<!--{{order.id}}--></p>
+          <p class="fw-bold mb-0"><span class="fw-bold me-4">Discount: </span> $19.00</p>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold mb-0">Invoice Date:  1st Nov 2022</p>
+          <p class="fw-bold mb-0"><span class="fw-bold me-4">GST 18%: </span> 123</p>
+        </div>
+
+        <div class="d-flex justify-content-between mb-5">
+          <p class="fw-bold mb-0">Coupon Code: FLAT20</p>
+          <p class="fw-bold mb-0"><span class="fw-bold me-4">Delivery Charges: </span> Free</p>
+          
+          <h6 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Total
+            paid: <span class="h2 mb-0 ms-2"> $229.95</span></h6>
+        </div>
+      </div>
+      <!-- <div class="card-footer border-0 px-4 py-2"
+        style="background-color: rgb(104, 106, 108); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+        <h6 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Total
+          paid: <span class="h2 mb-0 ms-2"> $229.95</span></h6>
+          <img src="https://github.com/rajsaurav4055/track-group1/blob/dev/frontendshopeazy_project/templates/shopeazy/Logo.png?raw=true" width="150px"
+    height="100px">
+      </div> -->  
+   </div>
+</div>
+  {% endblock %}
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html> -->

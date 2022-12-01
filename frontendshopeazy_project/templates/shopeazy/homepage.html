@@ -33,7 +33,7 @@
         <div class="col-lg-3 card-block mt-2 prd" id={{product.productid}} style="width:15rem;">
             <img class="card-img-top" src="{% static product.image %}" height=300px width= 200px alt="Card image cap">
             <div class="card-body text-center">
-                <p class="card-title">{{product.pname}}</p>
+                <p class="card-title"><a href="/product">{{product.pname}}</a></p>
                 <p class="card-text" ><b>$</b><b>{{product.price}}</b></p>
             </div>
             <div class="card-footer w-100">

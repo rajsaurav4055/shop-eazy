@@ -1,9 +1,20 @@
 /* Base.html*/
+nav{
+  background-color: rgb(104, 106, 108);
+}
+.one-edge-shadow {
+          box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
+}
 
+.display-8{
+font-weight: 200;
+font-size: 30px;
+
+}
   /* Navigation Bar */
-  .navbar{
+.navbar{
     padding-bottom: 4.5rem;
-  }
+}
 /* dropdwon menu*/
 .dropdown-menu {
     background-color: rgb(231, 236, 226);
@@ -19,8 +30,9 @@
 
   }
   #footer {
-    /*position: fixed;*/
+    position: fixed;
     text-align: center;
+    left:0;
     background-color: rgb(104, 106, 108);
     padding: 10px 10px 0px 10px;
     bottom: 0;
@@ -36,6 +48,49 @@
   margin-bottom: 2rem;
 }
 
+/* --------------------product.html-----------------------*/
+.pdt {
+  height: 350px;
+  width: 800px;
+  text-align: left;
+  margin-left: 200px;
+  margin-right: 200px;
+  float: left;
+}
+.relatedProducts {
+  margin-left: 200px;
+  margin-top: 400px;
+  height: 200px;
+  width: 900px;
+}
+#prodImage {
+  float: left;
+}
+#productDescription {
+  margin-top: 50px;
+}
+.checked {
+  color: orange;
+}
+.gallery {
+  margin-left: 100px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+.gallery:hover {
+  border: 1px solid #777;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+/*-------------------------------------------*/
 /* ------------------- cart.html ----------------------
 body{
   background: #ddd;

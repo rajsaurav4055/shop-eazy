@@ -1,0 +1,47 @@
+{% extends 'shopeazy/base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="product pdt">
+      <img
+        src="https://t3.ftcdn.net/jpg/00/91/07/82/360_F_91078252_i7cx2uJzDzgoJGDdUAHtVAcpjugVauX9.jpg"
+        id="prodImage"
+      />
+      <p id="productDescription">
+        <h3>Beat Headphones</h3>
+        <p id="price">$45.00</p>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span></br>
+        Beats Studio3 Wireless Noise Cancelling Over-Ear Headphones - Apple W1
+        Headphone Chip, Class 1 Bluetooth, 22 Hours of Listening Time, Built-in
+        Microphone - Matte Black (Latest Model)
+      </p>
+    </div>
+    <div class="relatedProducts">
+      <p><h3>Related Products</h3></p>
+      <div class="gallery">
+        <a href="/product">
+          <img src="https://m.media-amazon.com/images/I/61cC3eF3uEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Add a description of the image here</div>
+      </div>
+      
+      <div class="gallery">
+        <a href="/product">
+          <img src="https://m.media-amazon.com/images/I/61cC3eF3uEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Forest" width="600" height="400">
+        </a>
+        <div class="desc">Add a description of the image here</div>
+      </div>
+      
+      <div class="gallery">
+        <a href="/product">
+          <img src="https://m.media-amazon.com/images/I/61cC3eF3uEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Northern Lights" width="600" height="400">
+        </a>
+        <div class="desc">Add a description of the image here</div>
+      </div>
+    </div>
+    {% endblock %}
+    
