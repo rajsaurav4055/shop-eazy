@@ -5,16 +5,17 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('', views.homepage, name='homepage'),
-    path('<str:category>',views.category_homepage, name='category_homepage'),
-    path('signup', views.signup, name='signup'),
-    path('signin', views.signin, name='signin'),
-    #path('homepage', views.homepage, name="homepage"),
-    path('product', views.product, name='product'),
-    path('order', views.order, name='order'),
-    path('cart', views.cart, name='cart'),
+     path('', views.homepage, name='homepage'),
+     path('category_homepage/<str:category>',views.category_homepage, name='category_homepage'),
+     path('signup', views.signup, name='signup'),
+     path('signin',views.signin, name='signin'),
+     #path('homepage', views.homepage, name="homepage"),
+     path('add-to-cart',views.add_to_cart,name='add_to_cart'),
+     path('cart',views.cart,name='cart'),
+     path('product', views.product, name='product'),
+     path('order', views.order, name='order'),
+     path('cart', views.cart, name='cart'),
     path('signout', views.signout, name='signout'),
-    path('product', views.product, name='product'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG: #add this
