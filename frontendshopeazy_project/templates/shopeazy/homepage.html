@@ -1,4 +1,4 @@
-{% extends "shopeazy/base.html" %}
+{% extends 'shopeazy/base.html' %}
 
 {% load static %}
 {% block content %}
@@ -10,7 +10,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{% static 'images/home.jpeg' %}"class="d-block w-100" alt="deal-1">
+            <img src="{% static 'images/black-friday.jpg' %}"class="d-block w-100" alt="deal-1">
             <div class="carousel-caption d-none d-md-block">
             </div>
           </div>
@@ -30,14 +30,20 @@
 <div id='products' class="col-lg-12 mx-auto">
     <div class="row  mx-auto ">
         {% for product in products %}
-        <div class="col-lg-3 card-block mt-2 prd" id={{product.id}} style="width:15rem;">
-            <img class="card-img-top" src="{{product.image}}" alt="Card image cap">
+        <div class="col-lg-3 card-block mt-2 prd" id={{product.productid}} style="width:15rem;">
+            <img class="card-img-top" src="{% static product.image %}" height=300px width= 200px alt="Card image cap">
             <div class="card-body text-center">
                 <p class="card-title">{{product.pname}}</p>
-                <p class="card-text"><b>$</b><b>{{product.price}}</b></p>
+                <p class="card-text" ><b>$</b><b>{{product.price}}</b></p>
             </div>
             <div class="card-footer w-100">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                <input type="hidden" value="1" class="form-control product-qty-{{product.productid}}" id="productQty" />
+                <input type="hidden" class="product-image-{{product.productid}}" value="{{product.image}}" />
+                <input type="hidden" class="product-id-{{product.productid}}" value="{{product.productid}}" />
+                <input type="hidden" class="product-pname-{{product.productid}}" value="{{product.pname}}" />
+                <input type="hidden" class="product-price-{{product.productid}}" value="{{product.price}}" />
+			  	      <!-- <button class="btn btn-sm btn-primary add-to-cart" data-index="{{product.id}}"><i class="fa fa-shopping-cart"></i></button> -->
+                <div class="text-center"><button class="btn btn-outline-dark mt-auto add-to-cart" data-index="{{product.productid}}">Add to cart</button></div>
             </div>
         </div>
        {% endfor %}

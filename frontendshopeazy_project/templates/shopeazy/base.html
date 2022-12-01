@@ -35,12 +35,12 @@
 </head>
 
 <body>
-  <!-- navbar -->
-  <section class="header">
+  <!-- navbar <section class="header">-->
+  
 
   <nav class="one-edge-shadow navbar navbar-light sticky-top navbar navbar-expand-lg text-white">
     <a class="navbar-brand ms-3 text-dark " href="/">
-    <img src="https://github.com/rajsaurav4055/track-group1/blob/dev/frontendshopeazy/templates/shopeazy/Logo.png?raw=true" width="1900px"
+    <img src="{% static '/images/Logo.png' %}" width="1900px"
     height="50px" style="width:50px; height:50px;color:text-light;">ShopEazy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +60,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/">All Products</a>
-                <a class="dropdown-item" href="{% url 'category_homepage' 'Men-Apparels' %}">Men Apparels</a>
-                <a class="dropdown-item" href="{% url 'category_homepage' 'Women-Apparels' %}">Women Apparels</a>
-                <a class="dropdown-item" href="{% url 'category_homepage' 'Kids-Apparels' %}">Kids Apparels</a>
-                <a class="dropdown-item" href="{% url 'category_homepage' 'Electronics' %}">Electronics </a>
-                <a class="dropdown-item" href="{% url 'category_homepage' 'Books' %}">Books</a>
+                <a class="dropdown-item" href="/category_homepage/Men-Apparels">Men Apparels</a>
+                <a class="dropdown-item" href="/category_homepage/Women-Apparels">Women Apparels</a>
+                <a class="dropdown-item" href="/category_homepage/Kids-Apparels">Kids Apparels</a>
+                <a class="dropdown-item" href="/category_homepage/Electronics">Electronics </a>
+                <a class="dropdown-item" href="/category_homepage/Books">Books</a>
                 <!--<div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>-->
                 </div>
@@ -74,43 +74,43 @@
 
         <li class="nav-item active">
           <a class="nav-link" href="/cart">Cart
-            <span class="badge badge-success"></span>
+            <span class="badge badge-success">{{request.session.cart.keys|length}}</span>
             <span class="sr-only">(current)</span></a>
         </li>
-        
-        {% if request.session.customer %}
+        {% if request.session.user %}
 
         <li class="nav-item active ">
-          <a class="nav-link" href="{% url 'order' %}">Orders<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/order">Orders<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active ">
-          <a class="nav-link" href="{% url 'signout' %}">Logout<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/signout">Logout<span class="sr-only">(current)</span></a>
         </li>
         {% else %}
-
         <li class="nav-item active">
-          <a class="nav-link" href="/{% url 'signup' % }">Signup<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/{% url 'sigin' % }">Signin<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/signin">Signin<span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
       </ul>
     </div>
   </nav>
-</section>
-  <!---->
   {% block content %}{% endblock %}
 
-<footer id="footer">
+  <footer id="footer">
     <i class="fab fa-twitter footer-icon dark"></i>
     <i class="fab fa-facebook footer-icon"></i>
     <i class="fab fa-instagram footer-icon"></i>
     <i class="fas fa-envelope footer-icon"></i>
     <p>© Copyright ShopEazy</p>
 </footer>
+  
+
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -120,5 +120,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>

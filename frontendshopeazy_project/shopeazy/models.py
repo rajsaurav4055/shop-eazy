@@ -23,6 +23,7 @@ class Product(models.Model):
 class Order(models.Model):
     userid = models.ForeignKey(User, on_delete = models.CASCADE)
     productid = models.ForeignKey(Product, on_delete = models.CASCADE)
+    # quantity = models.IntegerField(default=1)
     orderdate = models.DateTimeField(auto_now_add = True)
     orderstatus = models.CharField(max_length=255)
     finalprice = models.FloatField()
