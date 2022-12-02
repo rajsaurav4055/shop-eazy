@@ -18,6 +18,7 @@ class Product(models.Model):
     category = models.CharField(max_length=255)
     specifications = models.CharField(max_length=255)
     image = models.CharField(max_length=255, default="")
+    rating = models.FloatField(default=3.5)
 
 # id is auto-generated and incremented by django
 class Order(models.Model):

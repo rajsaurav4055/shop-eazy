@@ -19,7 +19,7 @@
   <title>ShopEazy</title>
   <style>
     nav{
-      background-color: rgb(104, 106, 108);
+      background-color: rgb(16, 20, 24);
     }
     .one-edge-shadow {
               box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
@@ -41,7 +41,7 @@
   <nav class="one-edge-shadow navbar navbar-light sticky-top navbar navbar-expand-lg text-white">
     <a class="navbar-brand ms-3 text-dark " href="/">
     <img src="{% static '/images/Logo.png' %}" width="1900px"
-    height="50px" style="width:50px; height:50px;color:text-light;">ShopEazy</a>
+    height="50px" style="width:75px; height:50px;color:text-light;"></a><h1>ShopEazy</h1>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -51,11 +51,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/" style="color:white ;">Home <span class="sr-only">(current)</span></a>
             </li>
       
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" style="color:white ;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  Categories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,7 +73,7 @@
       <ul class=" navbar-nav my-2 my-lg-0">
 
         <li class="nav-item active">
-          <a class="nav-link" href="/cart">Cart
+          <a class="nav-link" style="color:white ;" href="/cart">Cart
             <span class="badge badge-success">{{request.session.cart.keys|length}}</span>
             <span class="sr-only">(current)</span></a>
         </li>
@@ -81,18 +81,18 @@
         {% if request.session.user %}
 
         <li class="nav-item active ">
-          <a class="nav-link" href="/order">Orders<span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:white ;" href="/order">Orders<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active ">
-          <a class="nav-link" href="/signout">Logout<span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:white ;" href="/signout">Logout<span class="sr-only">(current)</span></a>
         </li>
         {% else %}
 
         <li class="nav-item active">
-          <a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:white ;" href="/signup">Signup<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/signin">Signin<span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:white ;" href="/signin">Signin<span class="sr-only">(current)</span></a>
         </li>
         {% endif %}
       </ul>
@@ -102,12 +102,12 @@
   <!---->
   {% block content %}{% endblock %}
 
- <footer id="footer">
-    <i class="fab fa-twitter footer-icon dark"></i>
-    <i class="fab fa-facebook footer-icon"></i>
-    <i class="fab fa-instagram footer-icon"></i>
-    <i class="fas fa-envelope footer-icon"></i>
-    <p>© Copyright ShopEazy</p>
+ <footer style="background-color: rgb(16, 20, 24) ;" id="footer">
+    <i style="color:white ;" class="fab fa-twitter footer-icon dark"></i>
+    <i style="color:white ;" class="fab fa-facebook footer-icon"></i>
+    <i style="color:white ;" class="fab fa-instagram footer-icon"></i>
+    <i style="color:white ;" class="fas fa-envelope footer-icon"></i>
+    <p style="color:white ;">© Copyright ShopEazy</p>
  </footer>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
