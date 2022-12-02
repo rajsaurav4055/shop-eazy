@@ -1,46 +1,84 @@
 {% extends 'shopeazy/base.html' %}
+{% load static %}
+{% block content %}
+	<!-- Featured Products -->
+	<h3 class="my-4 border-bottom pb-1">{{product.pname}}</h3>
+	<div class="row">
+		<!-- Images -->
+		<div class="col-md-4">
+			<img id="zoom_01" src="{% static product.image %}" class="card-img-top" alt="{{product.pname}}" height="300px" width="150px">
+		</div>
+		<div class="col-md-8">
+			<p>{{product.specifications}}</p>
+			<hr/>
+			<table class="table table-bordered" style="width:100%">
+				<tr>
+					<th>Price</th>
+					<th>$ <span class="product-price-{{product.product}}">{{product.price}}</span></th>
+				</tr>
+			</table>
+			<hr/>
+			<div class="input-group my-3" style="width:30%;">
+			  <input type="number" value="1" class="form-control product-qty-{{data.id}}" id="productQty" />
+			  <div class="input-group-append">
+			  	<input type="hidden" class="product-image-{{data.id}}" value="{{data.productattribute_set.first.image}}" />
+		          <input type="hidden" class="product-id-{{data.id}}" value="{{data.id}}" />
+		          <input type="hidden" class="product-title-{{data.id}}" value="{{data.title}}" />
+			    <button class="btn btn-primary btn-sm add-to-cart" data-index="{{data.id}}" type="button" id="addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-md-6">
+			<h3 class="my-3">Detail</h3>
+			<!-- Detail -->
+			<table class="table table-bordered">
+				<tr>
+					<th>Product</th>
+					<td>{{product.pname}}</td>
+				</tr>
+				<tr>
+					<th>Category</th>
+					<td><a href="/category_homepage/{{product.category}}">{{product.category}}</a></td>
+				</tr>
+				<tr>
+					<th>Specification</th>
+					<td>{{product.specifications}}</td>
+				</tr>
+			</table>
+		</div>
+		<!-- Reviews -->
+		<div class="col-md-6">
+			<h3 class="my-3">Ratings - <span class="avg-rating">{{product.rating}}</span>/5 <i class="fa fa-star text-warning"></i>
+			</h3>
+			</h3>
+		</div>
+	</div>
+	<!-- Related Products -->
+	<h3 class="mt-4 mb-3 border-bottom pb-1">Related Products</h3>
+	<div class="row">
+		{% for relatedProduct in relatedProducts %}
+		<div class="col-lg-3 col-sm-4 mb-4">
+			<div class="card shadow">
+			  <a href="/product/{{product.id}}"><img src="{% static relatedProduct.image %}" class="card-img-top" alt="{{product.title}}" height=300px width=200px></a>
+			  <div class="card-body">
+			    <h6 class="card-text"><a href="/product/{{relatedProduct.productid}}">{{relatedProduct.pname}}</a></h6>
+			  </div>
+			  <div class="card-footer">
+			  	<span class="float-mid">
+			  		4.5/5
+			  		<i class="fa fa-star text-warning"></i>
+			  	</span>
+			  </div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</main>
 
- {% load static %}
- {% block content %}
-     <div class="product pdt">
-       <img
-         src="https://t3.ftcdn.net/jpg/00/91/07/82/360_F_91078252_i7cx2uJzDzgoJGDdUAHtVAcpjugVauX9.jpg"
-         id="prodImage"
-       />
-       <p id="productDescription">
-         <h3>Beat Headphones</h3>
-         <p id="price">$45.00</p>
-         <span class="fa fa-star checked"></span>
-         <span class="fa fa-star checked"></span>
-         <span class="fa fa-star checked"></span>
-         <span class="fa fa-star"></span>
-         <span class="fa fa-star"></span></br>
-         Beats Studio3 Wireless Noise Cancelling Over-Ear Headphones - Apple W1
-         Headphone Chip, Class 1 Bluetooth, 22 Hours of Listening Time, Built-in
-         Microphone - Matte Black (Latest Model)
-       </p>
-     </div>
-     <div class="relatedProducts">
-       <p><h3>Related Products</h3></p>
-       <div class="gallery">
-         <a href="/product">
-           <img src="https://m.media-amazon.com/images/I/61cC3eF3uEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Cinque Terre" width="600" height="400">
-         </a>
-         <div class="desc">Add a description of the image here</div>
-       </div>
+<!-- Add To Cart -->
+<script src="{% static 'custom.js' %}"></script>
 
-       <div class="gallery">
-         <a href="/product">
-           <img src="https://m.media-amazon.com/images/I/61cC3eF3uEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Forest" width="600" height="400">
-         </a>
-         <div class="desc">Add a description of the image here</div>
-       </div>
-
-       <div class="gallery">
-         <a href="/product">
-           <img src="https://m.media-amazon.com/images/I/61cC3eF3uEL.__AC_SX300_SY300_QL70_ML2_.jpg" alt="Northern Lights" width="600" height="400">
-         </a>
-         <div class="desc">Add a description of the image here</div>
-       </div>
-     </div>
-     {% endblock %}
+{% endblock %}

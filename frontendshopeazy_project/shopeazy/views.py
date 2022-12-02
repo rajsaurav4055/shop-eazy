@@ -65,7 +65,6 @@ def signout(request):
     return redirect('homepage')    
 
 def category_homepage(request, category):
-    print(category)
     context={}
     products = Product.objects.filter(category = category)
     context['products'] = products
@@ -114,5 +113,7 @@ def cart(request):
     else:
         return render(request, "shopeazy/cart.html",{'cart_data':'','totalitems':0,'total_amt':total_amt})
 
-def product(request):
-    return render(request, "shopeazy/product.html")
+def product(request, id):
+    product = Product.objects.get(productid = id)
+    relatedProducts = Product.objects.filter(category = product.category)
+    return render(request, "shopeazy/product.html", {'relatedProducts':relatedProducts, 'product':product})
