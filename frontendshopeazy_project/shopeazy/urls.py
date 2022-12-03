@@ -17,6 +17,13 @@ urlpatterns = [
      path('orderlist', views.orderlist, name='orderlist'),
      path('cart', views.cart, name='cart'),
     path('signout', views.signout, name='signout'),
+    path('delete-from-cart',views.delete_cart_item,name='delete-from-cart'),
+    path('checkout',views.checkout,name='checkout'),
+    path('paypal/',include('paypal.standard.ipn.urls')),
+    # path('process-payment/',views.process_payment,name='process_payment'),
+    path('payment-done/',views.payment_done,name='payment_done'),
+    path('payment-cancelled/',views.payment_cancelled,name='payment_cancelled'),
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG: #add this

@@ -23,7 +23,7 @@ $(document).ready(function(){
                 _vm.attr('disabled',true);
             },
             success:function(data){
-                $(".cart-list").text(res.totalitems);
+                $(".cart-list").text(data.totalitems);
                 _vm.attr('disabled',false);
                 console.log(data);
                 
@@ -45,6 +45,7 @@ $(document).ready(function(){
                 var discountedPrice= 0.9*totalAmount;
                 console.log(discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
+                document.getElementById("coupon-result").style.color = "green";
                 $('.total_price').text("$ "+discountedPrice);
                 return false;
             }
@@ -58,6 +59,7 @@ $(document).ready(function(){
             var discountedPrice= 0.9*totalAmount;
             console.log(discountedPrice);
             $('.invalid').text("Coupon Applied Successfully!!!");
+            document.getElementById("coupon-result").style.color = "green";
             $('.total_price').text("$ "+discountedPrice);
             return false;
             }   
@@ -75,6 +77,7 @@ $(document).ready(function(){
                 var discountedPrice= 0.8*totalAmount;
                 console.log(discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
+                document.getElementById("coupon-result").style.color = "green";
                 $('.total_price').text("$ "+discountedPrice);
                 return false;
             }
@@ -89,6 +92,7 @@ $(document).ready(function(){
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
+                document.getElementById("coupon-result").style.color = "green";
                 return false;
             }
         }
@@ -105,6 +109,7 @@ $(document).ready(function(){
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
+                document.getElementById("coupon-result").style.color = "green";
                 return false;
             }
             else{
@@ -118,22 +123,58 @@ $(document).ready(function(){
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
+                document.getElementById("coupon-result").style.color = "green";
                 return false;
             }
         }
         else if($('.coupon1').val() == ""){
             $('.invalid').text("Please enter the coupon code!");
+            document.getElementById("coupon-result").style.color = "yellow";
             var totalAmount= $('.total-amount').text();
             $('.total_price').text("$ "+totalAmount);
             return false;
         }
         else{
             $('.invalid').text("Invalid Coupon!");
+            document.getElementById("coupon-result").style.color = "red";
             var totalAmount= $('.total-amount').text();
             $('.total_price').text("$ "+totalAmount);
             return false;
         }
         
+    });
+
+    //Delete item from cart
+    // $('.delete-item').on('click', function(){
+    //         console.log("inside delete item logic")
+    //         var _pId = $(this).attr('data-item');
+    //         console.log(_pId);
+    // });
+
+    $(document).on('click','.delete-item', function(){
+        console.log("inside delete item logic")
+        var _pId = $(this).attr('data-item');
+        console.log(_pId);
+        var _vm=$(this);
+
+         // Ajax
+         $.ajax({
+            url:'/delete-from-cart',
+            data:{
+                'id':_pId,
+            },
+            dataType:'json',
+            beforeSend:function(){
+                _vm.attr('disabled',true);
+            },
+            success:function(res){
+                $(".cart-list").text(res.totalitems);
+                _vm.attr('disabled',false);
+                console.log(res);
+                $("#cartList").html(res.data);
+                
+            }
+        });
     });
 
 });
