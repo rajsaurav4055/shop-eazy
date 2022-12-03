@@ -79,8 +79,11 @@ def homepage(request):
 def order(request):
     return render(request, "shopeazy/order.html")
 
+def orderlist(request):
+    return render(request, "shopeazy/orderlist.html")
+
 def add_to_cart(request):
-    del request.session['cartdata']
+    # del request.session['cartdata']
     cart_p={}
     cart_p[str(request.GET['productid'])]={
     'image':request.GET['image'],

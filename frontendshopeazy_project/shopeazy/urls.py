@@ -14,6 +14,7 @@ urlpatterns = [
      path('cart',views.cart,name='cart'),
      path('product/<int:id>', views.product, name='product'),
      path('order', views.order, name='order'),
+     path('orderlist', views.orderlist, name='orderlist'),
      path('cart', views.cart, name='cart'),
     path('signout', views.signout, name='signout'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

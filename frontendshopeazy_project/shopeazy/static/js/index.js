@@ -23,7 +23,7 @@ $(document).ready(function(){
                 _vm.attr('disabled',true);
             },
             success:function(data){
-                // $(".cart-list").text(res.totalitems);
+                $(".cart-list").text(res.totalitems);
                 _vm.attr('disabled',false);
                 console.log(data);
                 
@@ -33,9 +33,22 @@ $(document).ready(function(){
     });
     // End
 
-    $('select[name="discount"]').change(function(){
-
-        if ($(this).val() == "10"){
+    $('.coupon').on('click',function(){
+        if ($('.coupon1').val() == "XMAS10"){
+            if($('.invalid').text()== "Invalid Coupon" || $('.invalid').text("Please enter the coupon code!")){
+                var totalAmount= $('.total-amount').text();
+                console.log(totalAmount);
+                totalAmount.replace('$','');
+                console.log("after replace"+ totalAmount);
+                totalAmount = parseInt(totalAmount);
+                console.log("after parseInt"+ totalAmount);
+                var discountedPrice= 0.9*totalAmount;
+                console.log(discountedPrice);
+                $('.invalid').text("Coupon Applied Successfully!!!");
+                $('.total_price').text("$ "+discountedPrice);
+                return false;
+            }
+            else{
             var totalAmount= $('.total-amount').text();
             console.log(totalAmount);
             totalAmount.replace('$','');
@@ -44,32 +57,81 @@ $(document).ready(function(){
             console.log("after parseInt"+ totalAmount);
             var discountedPrice= 0.9*totalAmount;
             console.log(discountedPrice);
+            $('.invalid').text("Coupon Applied Successfully!!!");
             $('.total_price').text("$ "+discountedPrice);
+            return false;
+            }   
         }
             
 
-        else if($(this).val() == "20"){
-            var totalAmount= $('.total-amount').text();
-            console.log(totalAmount);
-            totalAmount.replace('$','');
-            console.log("after replace"+ totalAmount);
-            totalAmount = parseInt(totalAmount);
-            console.log("after parseInt"+ totalAmount);
-            var discountedPrice= 0.8*totalAmount;
-            console.log(discountedPrice);
-            $('.total_price').text("$ "+discountedPrice);
+        else if($('.coupon1').val() == "FIFA20"){
+            if($('.invalid').text()== "Invalid Coupon" || $('.invalid').text("Please enter the coupon code!")){
+                var totalAmount= $('.total-amount').text();
+                console.log(totalAmount);
+                totalAmount.replace('$','');
+                console.log("after replace"+ totalAmount);
+                totalAmount = parseInt(totalAmount);
+                console.log("after parseInt"+ totalAmount);
+                var discountedPrice= 0.8*totalAmount;
+                console.log(discountedPrice);
+                $('.invalid').text("Coupon Applied Successfully!!!");
+                $('.total_price').text("$ "+discountedPrice);
+                return false;
+            }
+            else{
+                var totalAmount= $('.total-amount').text();
+                console.log(totalAmount);
+                totalAmount.replace('$','');
+                console.log("after replace"+ totalAmount);
+                totalAmount = parseInt(totalAmount);
+                console.log("after parseInt"+ totalAmount);
+                var discountedPrice= 0.8*totalAmount;
+                console.log(discountedPrice);
+                $('.total_price').text("$ "+discountedPrice);
+                $('.invalid').text("Coupon Applied Successfully!!!");
+                return false;
+            }
         }
             
-        else{
+        else if($('.coupon1').val() == "BOX30"){
+            if($('.invalid').text()== "Invalid Coupon" || $('.invalid').text("Please enter the coupon code!")){
+                var totalAmount= $('.total-amount').text();
+                console.log(totalAmount);
+                totalAmount.replace('$','');
+                console.log("after replace"+ totalAmount);
+                totalAmount = parseInt(totalAmount);
+                console.log("after parseInt"+ totalAmount);
+                var discountedPrice= 0.7*totalAmount;
+                console.log(discountedPrice);
+                $('.total_price').text("$ "+discountedPrice);
+                $('.invalid').text("Coupon Applied Successfully!!!");
+                return false;
+            }
+            else{
+                var totalAmount= $('.total-amount').text();
+                console.log(totalAmount);
+                totalAmount.replace('$','');
+                console.log("after replace"+ totalAmount);
+                totalAmount = parseInt(totalAmount);
+                console.log("after parseInt"+ totalAmount);
+                var discountedPrice= 0.7*totalAmount;
+                console.log(discountedPrice);
+                $('.total_price').text("$ "+discountedPrice);
+                $('.invalid').text("Coupon Applied Successfully!!!");
+                return false;
+            }
+        }
+        else if($('.coupon1').val() == ""){
+            $('.invalid').text("Please enter the coupon code!");
             var totalAmount= $('.total-amount').text();
-            console.log(totalAmount);
-            totalAmount.replace('$','');
-            console.log("after replace"+ totalAmount);
-            totalAmount = parseInt(totalAmount);
-            console.log("after parseInt"+ totalAmount);
-            var discountedPrice= 0.7*totalAmount;
-            console.log(discountedPrice);
-            $('.total_price').text("$ "+discountedPrice);
+            $('.total_price').text("$ "+totalAmount);
+            return false;
+        }
+        else{
+            $('.invalid').text("Invalid Coupon!");
+            var totalAmount= $('.total-amount').text();
+            $('.total_price').text("$ "+totalAmount);
+            return false;
         }
         
     });
