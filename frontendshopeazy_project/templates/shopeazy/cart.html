@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="{% static 'css/styles-cart.css' %}">
 </head> 
 <body> -->
-<div class="card" style="height: 650px;">
+<div class="cart-body" id="cartlist">
+<div class="card-cart">
     <div class="row">
         <div class="col-md-8 cart">
-            <div class="title">
+            <div class="title-cart">
                 <div class="row">
                     <div class="col"><h4><b>Shopping Cart</b></h4></div>
                     <div class="col align-self-center text-right text-muted">{{totalitems}} items</div>
@@ -26,26 +27,25 @@
                     <div class="col">
                         <a href="#">-</a><a href="#" class="border">{{item.qty}}</a><a href="#">+</a>
                     </div>
-                    <div class="col">&dollar; {{item.price}}<span class="close">&#10005;</span></div>
+                    <div class="col">&dollar; {{item.price}}<button class="close delete-item" data-item="{{product_id}}"><i class="fa fa-trash"> </i> </button></div>
                 </div>
             </div>
             {% endfor %}
-            <div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            <div class="back-to-shop-cart"><a href="/">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
-        <div class="col-md-4 summary">
-            <div><h5><b>Summary</b></h5></div>
-            <hr>
+        <div class="col-md-4 summary-cart">
+            <div><h5 class="h5-cart"><b>Summary</b></h5></div>
+            <hr class="hr-cart">
             <div class="row">
-                <div class="col" style="padding-left:0;">ITEMS {{totalitems}}</div>
+                <div class="col" style="padding-left:0.7em;">NUMBER OF ITEMS: {{totalitems}}</div>
                 <div class="col text-right"><span>&dollar;</span> <span class="total-amount">{{total_amt}}</span></div>
             </div>
-            <form>
-                <p>SHIPPING</p>
-                <select><option class="text-muted">Standard-Delivery- &dollar;5.00</option></select>
-                <p>GIVE CODE</p>
-                <p class="form-group"> <label>Have coupon?</label>
+            <form class="form-cart">
+                <p>SHIPPING DETAILS:</p>
+                <select class="select-cart"><option class="text-muted">Standard-Delivery- &dollar;5.00</option></select>
+                <p class="form-group"> <label><p>Have a Coupon?<br>Enter Coupon Code here:</p></label>
                 <p class="input-group"> <input type="text" class="form-control coupon1" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </p>
-                <p class="invalid"></p>
+                <p class="invalid" id="coupon-result"></p>
                 </p>
                 <!-- <select name="discount">
                     <option class="text-muted" id="tenPercent" value="10">10% OFF</option>
@@ -58,10 +58,11 @@
                 <div class="col text-right total_price">&dollar;{{total_amt}} </div>
             </div>
             <!-- <button class="btn"><a href="/order">CHECKOUT</a></button> -->
-            <hr> <a href="/order" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> CHECKOUT </a>
+            <hr class="hr-cart"> <a href="/checkout" class="btn btn-out btn-success btn-square btn-main" data-abc="true"> CHECKOUT </a>
         </div>
     </div>
     
+</div>
 </div>
 <!-- </body> -->
 {% endblock %}
