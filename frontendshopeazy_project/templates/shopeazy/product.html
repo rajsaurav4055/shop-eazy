@@ -14,17 +14,18 @@
 			<table class="table table-bordered" style="width:100%">
 				<tr>
 					<th>Price</th>
-					<th>$ <span class="product-price-{{product.product}}">{{product.price}}</span></th>
+					<th>$ <span class="product-p-{{product.productid}}">{{product.price}}</span></th>
 				</tr>
 			</table>
 			<hr/>
 			<div class="input-group my-3" style="width:30%;">
-			  <input type="number" value="1" class="form-control product-qty-{{data.id}}" id="productQty" />
+			  <input type="number" value="1" class="form-control product-qty-{{product.productid}}" id="productQty" />
 			  <div class="input-group-append">
-			  	<input type="hidden" class="product-image-{{data.id}}" value="{{data.productattribute_set.first.image}}" />
-		          <input type="hidden" class="product-id-{{data.id}}" value="{{data.id}}" />
-		          <input type="hidden" class="product-title-{{data.id}}" value="{{data.title}}" />
-			    <button class="btn btn-primary btn-sm add-to-cart" data-index="{{data.id}}" type="button" id="addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+			  	<input type="hidden" class="product-image-{{product.productid}}" value="{{product.image}}" />
+		          <input type="hidden" class="product-id-{{product.productid}}" value="{{product.productid}}" />
+		          <input type="hidden" class="product-pname-{{product.productid}}" value="{{product.pname}}" />
+				  <input type="hidden" class="product-price-{{product.productid}}" value="{{product.price}}" />
+			    <button class="btn btn-primary btn-sm add-to-cart" data-index="{{product.productid}}" type="button" id="addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 			  </div>
 			</div>
 		</div>
@@ -77,8 +78,5 @@
 		{% endfor %}
 	</div>
 </main>
-
-<!-- Add To Cart -->
-<script src="{% static 'custom.js' %}"></script>
 
 {% endblock %}

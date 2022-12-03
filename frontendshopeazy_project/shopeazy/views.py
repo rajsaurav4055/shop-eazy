@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db import connection
 from django.contrib import messages
 from shopeazy.models import User, Product, Order, Cart
@@ -80,6 +80,7 @@ def order(request):
     return render(request, "shopeazy/order.html")
 
 def add_to_cart(request):
+    del request.session['cartdata']
     cart_p={}
     cart_p[str(request.GET['productid'])]={
     'image':request.GET['image'],
@@ -102,13 +103,15 @@ def add_to_cart(request):
         request.session['cartdata']=cart_p
     return JsonResponse({'data':request.session['cartdata'],'totalitems':len(request.session['cartdata'])})
 
+
 def cart(request):
     total_amt=0
     print("before cart")
     if 'cartdata' in request.session:
         print("after cart")
         for productid,item in request.session['cartdata'].items():
-            total_amt+=int(item['qty'])*float(item['price'])
+            print(item)
+            total_amt+=int(item['qty'])*int(item['price'])
         return render(request, "shopeazy/cart.html",{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt})
     else:
         return render(request, "shopeazy/cart.html",{'cart_data':'','totalitems':0,'total_amt':total_amt})

@@ -14,7 +14,7 @@ class User(models.Model):
 class Product(models.Model):
     productid = models.IntegerField(primary_key = True)
     pname = models.CharField(max_length=255)
-    price = models.FloatField()
+    price = models.IntegerField()
     category = models.CharField(max_length=255)
     specifications = models.CharField(max_length=255)
     image = models.CharField(max_length=255, default="")
