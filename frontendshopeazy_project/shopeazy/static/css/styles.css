@@ -367,7 +367,7 @@ input:focus::-webkit-input-placeholder
 }
 
 
-/*--------PaymentFaile.html---------*/
+/*--------PaymentSuccess.html---------*/
 
 .payment-success
 {
@@ -392,6 +392,7 @@ input:focus::-webkit-input-placeholder
    border-radius:100%;
    background:#fff;
    text-align:center;
+   
  }
  
  .check-success i
@@ -399,6 +400,7 @@ input:focus::-webkit-input-placeholder
    vertical-align:middle;
    line-height:50px;
    font-size:30px;
+  
  }
 
   .content-success 
@@ -429,7 +431,7 @@ input:focus::-webkit-input-placeholder
       background:#000;
   }
 /*-----------------------------------*/
-/*--------PaymentFaile.html---------*/
+/*--------PaymentFailed.html---------*/
   .payment-failed
 {
   border:1px solid #f2f2f2;
