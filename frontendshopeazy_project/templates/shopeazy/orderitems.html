@@ -3,19 +3,18 @@
 {% block content %}
 
 <br>
-<div class="container" style="height:625px;">
+<div class="container" >
     <div class="row">
         <div class="col-md-3">
             <div class="osahan-account-page-left shadow-sm bg-white h-100">
                 <div class="border-bottom p-4">
                     <div class="osahan-user text-center">
                         <div class="osahan-user-media">
-                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="gurdeep singh osahan">
+                            <img class="mb-3 rounded-pill shadow-sm mt-1" src="https://img.freepik.com/free-vector/shop-cart-shop-building-cartoon_138676-2085.jpg?w=1380&t=st=1670178989~exp=1670179589~hmac=b76634ee6118ca52bc44f17a163763c39c30e78f7c686626095bf1e01bb54994" alt="gurdeep singh osahan">
                             <div class="osahan-user-media-body">
                                 <h6 class="mb-2">{{user.fname}}</h6>
-                                <p class="mb-1">{{user.phoneno}}</p>
-                                <p>{{user.email}}</p>
-                                <p>{{user.address}}</p>
+                                <p>Your Detailed Order List</p>
+                                <div class="back-to-shop-cart"><a href="/orderlist">&leftarrow;</a><span class="text-muted">Back to Orders</span></div>
                             </div>
                         </div>
                     </div>
@@ -28,7 +27,7 @@
             <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                        <h4 class="font-weight-bold mt-0 mb-4">Order Details</h4>
+                        <h4 class="font-weight-bold mt-0 mb-4">ORDER DETAILS</h4>
                         <div class="bg-white card mb-4 order-list shadow-sm">
                             <div class="gold-members p-4">
                                 <a href="#">
@@ -36,19 +35,19 @@
                                 {% for o in orderitems %}
                                 <div class="media">
                                     <a href="#">
-                                        <img class="mr-4" src="{% static o.image %}" alt="item-image">
+                                        <img class="mr-4" src="{% static o.image %}" alt="item-image" style="width:120px ; height:140px;">
                                     </a>
+                                    <hr>
                                     <div class="media-body">
                                         <a href="#">
-                                            <span class="float-right text-info">Invoice Number: {{o.invoice_number}}<i class="icofont-check-circled text-success"></i></span>
+                                            <span class="float-right text-info">INVOICE NUMBER: {{o.invoice_number}}<i class="icofont-check-circled text-success"></i></span>
                                         </a>
                                         <h6 class="mb-2">
-                                            <a href="#"></a>
-                                            <a href="#" class="text-black">Item Id: {{o.id}}</a>
+                                            <h6>ITEM ID: {{o.id}}</h6>
                                         </h6>
-                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>Item Name: {{o.item}}</p>
-                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>Quantity: {{o.qty}}</p>
-                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>Price: {{o.price}}</p>
+                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>NAME: {{o.item}}</p>
+                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>QUANTITY: {{o.qty}}</p>
+                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>PRICE: {{o.price}}</p>
                                         <hr>
                                         <!-- <div class="float-right">
                                             <a class="btn btn-sm btn-primary" href="#"><i class="icofont-refresh"></i>Order Details</a>
@@ -57,8 +56,9 @@
                                     </div>
                                 </div>
                                 {%endfor%}
-                                <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">Order Amount:$ {{order.finalprice}}</span>
+                                <p class="mb-0 text-black text-black pt-2"><span class="text-black font-weight-bold">ORDER TOTAL AMOUNT:$ {{order.finalprice}}</span>
                             </div>
+                            <br>
                         </div>
                         <!-- <div class="bg-white card mb-4 order-list shadow-sm">
                             <div class="gold-members p-4">
@@ -93,6 +93,7 @@
             </div>
         </div>
     </div>
+    <br>
 </div>
 {% endblock %}
 

@@ -3,7 +3,7 @@
 {% block content %}
 
 <br>
-<div class="container" style="height:625px;">
+<div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="osahan-account-page-left shadow-sm bg-white h-100">
@@ -16,6 +16,7 @@
                                 <p class="mb-1">{{user.phoneno}}</p>
                                 <p>{{user.email}}</p>
                                 <p>{{user.address}}</p>
+                                <div class="back-to-shop-cart"><a href="/">&leftarrow;</a><span class="text-muted">Back to Home</span></div>
                             </div>
                         </div>
                     </div>
@@ -28,7 +29,7 @@
             <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                        <h4 class="font-weight-bold mt-0 mb-4">My Orders</h4>
+                        <h4 class="font-weight-bold mt-0 mb-4">MY ORDERS</h4>
                         <div class="bg-white card mb-4 order-list shadow-sm">
                             {% for order in orders %}
                             <div class="gold-members p-4">
@@ -36,23 +37,24 @@
                                 </a>
                                 <div class="media">
                                     <a href="#">
-                                        <img class="mr-4" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
+                                        <img class="mr-4" src="https://cdn.vectorstock.com/i/1000x1000/32/64/online-shop-glyph-icon-vector-40223264.webp" alt="Generic placeholder image">
                                     </a>
                                     <div class="media-body">
                                         <h6 class="mb-2">
-                                            <a href="#"></a>
-                                            <a href="#" class="text-black">Order Number #{{order.id}}</a>
+                                        <h6>ORDER NUMBER #{{order.id}}</h6>
                                         </h6>
-                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>Ordered on {{order.orderdate}}
+                                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i>ORDER DATE: {{order.orderdate}}
                                         </p>
-                                        <hr>
                                         <div class="float-right">
                                             <a class="btn btn-sm btn-primary" href="/orderitems/{{order.id}}"><i class="icofont-refresh"></i>Order Details</a>
                                         </div>
-                                        <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">Order Amount: ${{order.finalprice}}</span>
+                                        
+                                       
+                                        <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">ORDER TOTAL AMOUNT: ${{order.finalprice}}</span>
                                         </p>
                                     </div>
                                 </div>
+                                <hr>
 
                             </div>
                             {%endfor%}
@@ -90,6 +92,7 @@
             </div>
         </div>
     </div>
+    <br>
 </div>
 {% endblock %}
 
