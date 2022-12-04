@@ -13,7 +13,7 @@ urlpatterns = [
     path('add-to-cart',views.add_to_cart,name='add_to_cart'),
     path('cart',views.cart,name='cart'),
     path('product/<int:id>', views.product, name='product'),
-    path('order', views.order, name='order'),
+    path('orderitems/<int:id>', views.orderitems, name='orderitems'),
     path('orderlist', views.orderlist, name='orderlist'),
     path('cart', views.cart, name='cart'),
     path('signout', views.signout, name='signout'),
@@ -24,6 +24,7 @@ urlpatterns = [
     path('payment-done/',views.payment_done,name='payment_done'),
     path('payment-cancelled/',views.payment_cancelled,name='payment_cancelled'),
     path('get_discounted_price', views.get_discounted_price, name='get_discounted_price'),
+
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

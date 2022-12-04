@@ -82,8 +82,11 @@ def homepage(request):
     context['products'] = products
     return render(request, "shopeazy/homepage.html",context)
 
-def order(request):
-    return render(request, "shopeazy/order.html")
+def orderitems(request,id):
+    order = CartOrder.objects.get(pk=id)
+    user = User.objects.get(userid=request.session['user'])
+    orderitems = CartOrderItems.objects.filter(order=order)
+    return render(request, "shopeazy/orderitems.html",{'orderitems':orderitems, 'user': user,'order':order})
 
 def orderlist(request):
     user = User.objects.get(userid=request.session['user'])
@@ -207,11 +210,11 @@ def checkout(request):
 @csrf_exempt
 def payment_done(request):
 	returnData=request.POST
-	return render(request, 'payment-success.html',{'data':returnData})
+	return render(request, 'shopeazy/paymentsuccess.html',{'data':returnData})
 
 
 @csrf_exempt
 def payment_cancelled(request):
-	return render(request, 'payment-fail.html')
+	return render(request, 'shopeazy/paymentfailed.html')
 
 
