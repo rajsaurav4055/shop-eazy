@@ -193,16 +193,18 @@ $(document).ready(function(){
 
     $(document).on('click','.checkout-button', function(){
         console.log("inside checkout button logic")
-        // var discounted_price= $('.total-price').text();
-        // price_after_discount= $('.total-price').text();
-        // price_after_discount = parseInt(discounted_price);
+        if($('.invalid').text()!="Coupon Applied Successfully!!!"){
+            var temp_pad=$('.total-amount').text();
+            console.log("temp_pad "+temp_pad)
+            temp_pad.replace('$','');
+            console.log("after replace"+ temp_pad);
+            temp_pad = parseInt(temp_pad);
+            console.log("after parseInt"+ temp_pad);
+            price_after_discount= temp_pad;
+            console.log("price after discount when no coupons applied"+ price_after_discount);
+        }
         console.log("Ajax k andr price after discount "+ price_after_discount)
         $('.checkout-price').text(price_after_discount);
-        // console.log("Discounted price:"+ discounted_price)
-
-        // var _pId = $(this).attr('data-item');
-        // console.log(_pId);
-        // var _vm=$(this);
         console.log("Price after discount: "+ price_after_discount);
 
          // Ajax
