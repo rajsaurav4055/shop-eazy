@@ -207,6 +207,11 @@ def checkout(request):
     else:
         return render(request,"shopeazy/signin.html" )
 
+def search(request):
+    query=request.GET['query']
+    data = Product.objects.filter(pname__icontains=query)
+    return render(request, "shopeazy/search.html",{'data':data})
+
 @csrf_exempt
 def payment_done(request):
 	returnData=request.POST
