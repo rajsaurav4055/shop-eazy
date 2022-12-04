@@ -23,6 +23,7 @@ urlpatterns = [
     # path('process-payment/',views.process_payment,name='process_payment'),
     path('payment-done/',views.payment_done,name='payment_done'),
     path('payment-cancelled/',views.payment_cancelled,name='payment_cancelled'),
+    path('get_discounted_price', views.get_discounted_price, name='get_discounted_price'),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
 from django.contrib import messages
-from shopeazy.models import User, Product, Order, Cart
+from shopeazy.models import User, Product, CartOrder, Cart, CartOrderItems
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
@@ -11,6 +11,7 @@ from django.conf import settings
 
 
 # Create your views here.
+discounted_Price=None
 
 def signup(request):
     if request.method == "POST":
@@ -85,7 +86,9 @@ def order(request):
     return render(request, "shopeazy/order.html")
 
 def orderlist(request):
-    return render(request, "shopeazy/orderlist.html")
+    user = User.objects.get(userid=request.session['user'])
+    orders=CartOrder.objects.filter(user=user)
+    return render(request, "shopeazy/orderlist.html",{'orders':orders, 'user': user})
 
 def add_to_cart(request):
     # del request.session['cartdata']
@@ -144,35 +147,60 @@ def delete_cart_item(request):
     t=render_to_string('shopeazy/ajax/cart-list.html',{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt})
     return JsonResponse({'data':t,'totalitems':len(request.session['cartdata'])})
 
+
+
+def get_discounted_price(request):
+    global discounted_Price 
+    discounted_Price = request.GET['price_after_discount']
+    print("Inside getDiscountPrice function "+ discounted_Price)
+    return JsonResponse({'data':discounted_Price})
+
 #checkout page
 def checkout(request):
+    
     if ('user' in request.session):
         print("logged in")
-
-        #process payment
-        order_id = '123'
-        host = request.get_host()
-        paypal_dict = {
-            'business': settings.PAYPAL_RECEIVER_EMAIL,
-            'amount': '123',
-            'item_name': 'Item Name',
-            'invoice': 'INV123',
-            'currency_code': 'USD',
-            'notify_url': 'http://{}{}'.format(host,reverse('paypal-ipn')),
-            'return_url': 'http://{}{}'.format(host,reverse('payment_done')),
-            'cancel_return': 'http://{}{}'.format(host,reverse('payment_cancelled')),
-        }
-        form = PayPalPaymentsForm(initial=paypal_dict)
+        
         # address=UserAddressBook.objects.filter(user=request.user,status=True).first()
         # return render(request, 'checkout.html',{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt,'form':form,'address':address})
         total_amt=0
         print("entered checkout page")
+        print(discounted_Price)
+        # final_price= get_discounted_price(request)
+        # print(final_price)
         if 'cartdata' in request.session:
             print("after cart")
+            #Order
+            user = User.objects.get(userid=request.session['user'])
+            order = CartOrder.objects.create(user=user,finalprice=discounted_Price)
             for productid,item in request.session['cartdata'].items():
                 print(item)
                 total_amt+=int(item['qty'])*int(item['price'])
-            return render(request, "shopeazy/checkout.html",{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':total_amt,'form':form})
+                #OrderItems
+                items = CartOrderItems.objects.create(
+                    order=order,
+                    invoice_number='INV-'+str(order.id),
+                    item=item['pname'],
+                    image=item['image'],
+                    qty=item['qty'],
+                    price=item['price'],
+                    total=int(item['qty'])*int(item['price'])
+                )
+
+            #process payment
+            host = request.get_host()
+            paypal_dict = {
+                'business': settings.PAYPAL_RECEIVER_EMAIL,
+                'amount': discounted_Price,
+                'item_name': 'OrderNo-'+str(order.id),
+                'invoice': 'INV-'+str(order.id),
+                'currency_code': 'CAD',
+                'notify_url': 'http://{}{}'.format(host,reverse('paypal-ipn')),
+                'return_url': 'http://{}{}'.format(host,reverse('payment_done')),
+                'cancel_return': 'http://{}{}'.format(host,reverse('payment_cancelled')),
+            }
+            form = PayPalPaymentsForm(initial=paypal_dict)
+            return render(request, "shopeazy/checkout.html",{'cart_data':request.session['cartdata'],'totalitems':len(request.session['cartdata']),'total_amt':discounted_Price,'form':form})
     else:
         return render(request,"shopeazy/signin.html" )
 
@@ -185,3 +213,5 @@ def payment_done(request):
 @csrf_exempt
 def payment_cancelled(request):
 	return render(request, 'payment-fail.html')
+
+

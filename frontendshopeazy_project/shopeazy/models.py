@@ -21,12 +21,20 @@ class Product(models.Model):
     rating = models.FloatField(default=3.5)
 
 # id is auto-generated and incremented by django
-class Order(models.Model):
-    userid = models.ForeignKey(User, on_delete = models.CASCADE)
-    productid = models.ForeignKey(Product, on_delete = models.CASCADE)
+class CartOrder(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     orderdate = models.DateTimeField(auto_now_add = True)
-    orderstatus = models.CharField(max_length=255)
-    finalprice = models.FloatField()
+    paidstatus = models.BooleanField(default=False)
+    finalprice = models.IntegerField()
+
+class CartOrderItems(models.Model):
+    order=models.ForeignKey(CartOrder, on_delete = models.CASCADE)
+    invoice_number = models.CharField(max_length = 255)
+    item = models.CharField(max_length=255)
+    image = models.CharField(max_length=255)
+    qty = models.IntegerField()
+    price = models.IntegerField()
+    total = models.IntegerField()
 
 # promo code is of 5 letters
 #auto generated id == primary key

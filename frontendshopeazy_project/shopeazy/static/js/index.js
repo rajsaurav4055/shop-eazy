@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var price_after_discount;
     // Add to cart
     $(document).on('click',".add-to-cart",function(){
         var _vm=$(this);
@@ -43,10 +44,13 @@ $(document).ready(function(){
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
                 var discountedPrice= 0.9*totalAmount;
+                price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
                 document.getElementById("coupon-result").style.color = "green";
+                // myAjax();
                 $('.total_price').text("$ "+discountedPrice);
+
                 return false;
             }
             else{
@@ -57,9 +61,11 @@ $(document).ready(function(){
             totalAmount = parseInt(totalAmount);
             console.log("after parseInt"+ totalAmount);
             var discountedPrice= 0.9*totalAmount;
+            price_after_discount=discountedPrice;
             console.log(discountedPrice);
             $('.invalid').text("Coupon Applied Successfully!!!");
             document.getElementById("coupon-result").style.color = "green";
+            // myAjax();
             $('.total_price').text("$ "+discountedPrice);
             return false;
             }   
@@ -75,9 +81,11 @@ $(document).ready(function(){
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
                 var discountedPrice= 0.8*totalAmount;
+                price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
                 document.getElementById("coupon-result").style.color = "green";
+                // myAjax();
                 $('.total_price').text("$ "+discountedPrice);
                 return false;
             }
@@ -89,10 +97,12 @@ $(document).ready(function(){
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
                 var discountedPrice= 0.8*totalAmount;
+                price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
                 document.getElementById("coupon-result").style.color = "green";
+                // myAjax();
                 return false;
             }
         }
@@ -106,10 +116,12 @@ $(document).ready(function(){
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
                 var discountedPrice= 0.7*totalAmount;
+                price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
                 document.getElementById("coupon-result").style.color = "green";
+                // myAjax();
                 return false;
             }
             else{
@@ -120,10 +132,12 @@ $(document).ready(function(){
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
                 var discountedPrice= 0.7*totalAmount;
+                price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
                 document.getElementById("coupon-result").style.color = "green";
+                // myAjax();
                 return false;
             }
         }
@@ -176,6 +190,38 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('click','.checkout-button', function(){
+        console.log("inside checkout button logic")
+        // var discounted_price= $('.total-price').text();
+        // price_after_discount= $('.total-price').text();
+        // price_after_discount = parseInt(discounted_price);
+        console.log("Ajax k andr price after discount "+ price_after_discount)
+        $('.checkout-price').text(price_after_discount);
+        // console.log("Discounted price:"+ discounted_price)
+
+        // var _pId = $(this).attr('data-item');
+        // console.log(_pId);
+        // var _vm=$(this);
+        console.log("Price after discount: "+ price_after_discount);
+
+         // Ajax
+         $.ajax({
+            url:'/get_discounted_price',
+            data:{
+                'price_after_discount':price_after_discount,
+            },
+            dataType:'json',
+            success:function(res){
+                // $(".cart-list").text(res.totalitems);
+                // _vm.attr('disabled',false);
+                console.log("Ajax call successful"+res.data);
+                // $("#cartList").html(res.data);
+                
+            }
+        });
+    });
+
 
 });
 

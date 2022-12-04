@@ -167,5 +167,5 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PAYPAL_RECEIVER_EMAIL = 'raj.sauravwq@gmail.com'
+PAYPAL_RECEIVER_EMAIL = 'sb-143bah23205688@business.example.com'
 PAYPAL_TEST = True
