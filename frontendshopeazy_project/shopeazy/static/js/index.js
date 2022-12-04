@@ -43,7 +43,7 @@ $(document).ready(function(){
                 console.log("after replace"+ totalAmount);
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
-                var discountedPrice= 0.9*totalAmount;
+                var discountedPrice= parseInt(0.9*totalAmount);
                 price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
@@ -60,7 +60,7 @@ $(document).ready(function(){
             console.log("after replace"+ totalAmount);
             totalAmount = parseInt(totalAmount);
             console.log("after parseInt"+ totalAmount);
-            var discountedPrice= 0.9*totalAmount;
+            var discountedPrice= parseInt(0.9*totalAmount);
             price_after_discount=discountedPrice;
             console.log(discountedPrice);
             $('.invalid').text("Coupon Applied Successfully!!!");
@@ -80,7 +80,7 @@ $(document).ready(function(){
                 console.log("after replace"+ totalAmount);
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
-                var discountedPrice= 0.8*totalAmount;
+                var discountedPrice= parseInt(0.8*totalAmount);
                 price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.invalid').text("Coupon Applied Successfully!!!");
@@ -96,7 +96,7 @@ $(document).ready(function(){
                 console.log("after replace"+ totalAmount);
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
-                var discountedPrice= 0.8*totalAmount;
+                var discountedPrice= parseInt(0.8*totalAmount);
                 price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
@@ -115,7 +115,7 @@ $(document).ready(function(){
                 console.log("after replace"+ totalAmount);
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
-                var discountedPrice= 0.7*totalAmount;
+                var discountedPrice= parseInt(0.7*totalAmount);
                 price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
@@ -131,7 +131,7 @@ $(document).ready(function(){
                 console.log("after replace"+ totalAmount);
                 totalAmount = parseInt(totalAmount);
                 console.log("after parseInt"+ totalAmount);
-                var discountedPrice= 0.7*totalAmount;
+                var discountedPrice= parseInt(0.7*totalAmount);
                 price_after_discount=discountedPrice;
                 console.log(discountedPrice);
                 $('.total_price').text("$ "+discountedPrice);
