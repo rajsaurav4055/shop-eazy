@@ -214,8 +214,9 @@ def search(request):
 
 @csrf_exempt
 def payment_done(request):
-	returnData=request.POST
-	return render(request, 'shopeazy/paymentsuccess.html',{'data':returnData})
+    returnData=request.POST
+    del request.session['cartdata']
+    return render(request, 'shopeazy/paymentsuccess.html',{'data':returnData})
 
 
 @csrf_exempt
