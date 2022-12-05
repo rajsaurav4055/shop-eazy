@@ -1,62 +1,77 @@
 {% extends 'shopeazy/base.html' %}
 {% load static %}
 {% block content %}
-	<!-- Featured Products -->
-	<h3 class="my-4 border-bottom pb-1">{{product.pname}}</h3>
-	<div class="row">
-		<!-- Images -->
-		<div class="col-md-4">
-			<img id="zoom_01" src="{% static product.image %}" class="card-img-top" alt="{{product.pname}}" height="300px" width="150px">
-		</div>
-		<div class="col-md-8">
-			<p>{{product.specifications}}</p>
-			<hr/>
-			<table class="table table-bordered" style="width:100%">
-				<tr>
-					<th>Price</th>
-					<th>$ <span class="product-p-{{product.productid}}">{{product.price}}</span></th>
-				</tr>
-			</table>
-			<hr/>
-			<div class="input-group my-3" style="width:30%;">
-			  <input type="number" value="1" class="form-control product-qty-{{product.productid}}" id="productQty" />
-			  <div class="input-group-append">
-			  	<input type="hidden" class="product-image-{{product.productid}}" value="{{product.image}}" />
-		          <input type="hidden" class="product-id-{{product.productid}}" value="{{product.productid}}" />
-		          <input type="hidden" class="product-pname-{{product.productid}}" value="{{product.pname}}" />
-				  <input type="hidden" class="product-price-{{product.productid}}" value="{{product.price}}" />
-			    <button class="btn btn-primary btn-sm add-to-cart" data-index="{{product.productid}}" type="button" id="addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-			  </div>
+<br>
+<main class="container-product" style="background-color:white; margin-left:150px;">
+	<img src="{% static product.image %}" style="width:700px; height:700px ;">
+
+	   
+	<!-- Right Column -->
+	<div class="right-column" style="margin-left:100px ;">
+   
+	  <!-- Product Description -->
+	  <div class="product-description">
+		<span>{{product.category}}</span>
+		<h1>{{product.pname}}</h1>
+		<p style="color:black ;">{{product.specifications}}</p>
+	  </div>
+	  <div class="col-md-6">
+		<h3 class="my-3">Ratings: <span class="avg-rating">{{product.rating}}/5</span><i class="fa fa-star text-warning"></i>
+		</h3>
+	</div>
+   
+	  <!-- Product Configuration -->
+	  <div class="product-configuration">
+   
+		<!-- Product Color -->
+		<div class="product-color">
+		  <span>Select Color</span>
+   
+		  <div class="color-choose">
+			<div>
+			  <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+			  <label for="red"><span></span></label>
 			</div>
+			<div>
+			  <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+			  <label for="blue"><span></span></label>
+			</div>
+			<div>
+			  <input data-image="black" type="radio" id="black" name="color" value="black">
+			  <label for="black"><span></span></label>
+			</div>
+		  </div>
+   
+		</div>
+   
+		<!-- Cable Configuration -->
+		<div class="cable-config">
+		  <span>Product Customization</span>
+   
+		  <div class="cable-choose">
+			<button>Straight</button>
+			<button>Coiled</button>
+			<button>Long-coiled</button>
+		  </div>
+   
+		</div>
+	  </div>
+   
+	  <!-- Product Pricing -->
+	  <div class="product-price">
+		<span style="font-weight:bold ;">$ {{product.price}}</span>
+	  </div>
+	  <div class="input-group my-3" style="width:50%;">
+		<input type="number" value="1" class="form-control product-qty-{{product.productid}}" id="productQty" />
+		<div class="input-group-append">
+			<input type="hidden" class="product-image-{{product.productid}}" value="{{product.image}}" />
+			<input type="hidden" class="product-id-{{product.productid}}" value="{{product.productid}}" />
+			<input type="hidden" class="product-pname-{{product.productid}}" value="{{product.pname}}" />
+			<input type="hidden" class="product-price-{{product.productid}}" value="{{product.price}}" />
+		  <button class="btn btn-primary btn-sm add-to-cart" data-index="{{product.productid}}" type="button" id="addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
 		</div>
 	</div>
-	<hr />
-	<div class="row">
-		<div class="col-md-6">
-			<h3 class="my-3">Detail</h3>
-			<!-- Detail -->
-			<table class="table table-bordered">
-				<tr>
-					<th>Product</th>
-					<td>{{product.pname}}</td>
-				</tr>
-				<tr>
-					<th>Category</th>
-					<td><a href="/category_homepage/{{product.category}}">{{product.category}}</a></td>
-				</tr>
-				<tr>
-					<th>Specification</th>
-					<td>{{product.specifications}}</td>
-				</tr>
-			</table>
-		</div>
-		<!-- Reviews -->
-		<div class="col-md-6">
-			<h3 class="my-3">Ratings - <span class="avg-rating">{{product.rating}}</span>/5 <i class="fa fa-star text-warning"></i>
-			</h3>
-			</h3>
-		</div>
-	</div>
+  </main>
 	<!-- Related Products -->
 	<h3 class="mt-4 mb-3 border-bottom pb-1">Related Products</h3>
 	<div class="row">
@@ -77,6 +92,6 @@
 		</div>
 		{% endfor %}
 	</div>
-</main>
+
 
 {% endblock %}

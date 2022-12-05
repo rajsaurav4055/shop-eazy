@@ -19,7 +19,7 @@
             {% for product_id,item in cart_data.items %}
             <div class="row border-top border-bottom">
                 <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="{% static item.image %}"></div>
+                    <div class="col-2"><img class="img-fluid" src="{% static item.image %}" style="padding-left: 10px;"></div>
                     <div class="col">
                         <!-- <div class="row text-muted">Shirt</div> -->
                         <div class="row">{{item.pname}}</div>
@@ -42,7 +42,7 @@
             </div>
             <form class="form-cart">
                 <p>SHIPPING DETAILS:</p>
-                <select class="select-cart"><option class="text-muted">Standard-Delivery- &dollar;5.00</option></select>
+                <select class="select-cart"><option class="text-muted">Standard-Delivery-Free</option></select>
                 <p class="form-group"> <label><p>Have a Coupon?<br>Enter Coupon Code here:</p></label>
                 <p class="input-group"> <input type="text" class="form-control coupon1" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </p>
                 <p class="invalid" id="coupon-result"></p>

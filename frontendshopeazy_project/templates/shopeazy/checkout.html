@@ -19,7 +19,7 @@
             {% for product_id,item in cart_data.items %}
             <div class="row border-top border-bottom">
                 <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="{% static item.image %}"></div>
+                    <div class="col-2"><img class="img-fluid" src="{% static item.image %}" style="padding-left: 10px;"></div>
                     <div class="col">
                         <!-- <div class="row text-muted">Shirt</div> -->
                         <div class="row">{{item.pname}}</div>
