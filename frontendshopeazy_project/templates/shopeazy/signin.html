@@ -23,6 +23,9 @@
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card shadow-2-strong" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
+                {%if message%}
+                  <div class="h3 font-weight-bold text-danger"> Invalid Credentials!</div>
+                {%endif%}
 
                 <div class="text-center">
                   <img src="{% static '/images/Logo.png' %}" style="width: 185px;" alt="logo">

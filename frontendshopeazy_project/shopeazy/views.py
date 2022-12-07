@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
+from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from shopeazy.models import User, Product, CartOrder, Cart, CartOrderItems
 from django.template.loader import render_to_string
@@ -39,6 +40,7 @@ def signup(request):
         
         user = User.objects.create(userid = userid,fname = fname,lname = lname,email = email,address = address,phoneno = phoneno,password = password)
         user.save()
+        print(userid)
         messages.success(request, "You are successfully registered! Thank You.")
         return redirect('signin')
         
@@ -49,18 +51,24 @@ def signin(request):
     if request.method == 'POST':
         userid = request.POST.get('userid')
         password = request.POST.get('password')
-        
-        user = User.objects.get(userid = userid)
-        
+        # user = User.get_object_or_404(userid = userid)
+        # user = User.objects.get(userid = userid)
+        try:
+            user = User.objects.get(userid = userid)
+        except User.DoesNotExist:
+            data ={}
+            message= 'Invalid Credentials!'
+            data['message'] = message
+            return render(request, "shopeazy/signin.html", data)
         if user.userid == userid and user.password == password:
             context ={}
             context['user'] = user
             #adding the current user to the current session
             request.session['user'] = user.userid
             return redirect("homepage")
-        else:
-            messages.error(request, "Wrong Credentials. Please try again!")
-            return redirect('homepage')
+        # else:
+        #     messages.error(request, "Wrong Credentials. Please try again!")
+        #     return redirect('homepage',data)
         
     return render(request, "shopeazy/signin.html")
 
