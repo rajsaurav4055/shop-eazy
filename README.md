@@ -1,4 +1,10 @@
-ShopEazy Shopping Portal
+#ShopEazy Shopping Portal
+
+• Developed an online shopping portal using Django RESTful framework where
+registered users can add/delete/update products in the cart and used Django’s
+PayPal API to implement payment.
+• Deployed the app on Microsoft Azure using Azure Devops and built REST APIs
+to perform tasks.
 
 [Figma Prototype](https://www.figma.com/file/Y7GhMGNATywEDXP6QprSuZ/Full-Stack-Prototype?node-id=36%3A67&t=CHzvisYdyKjV4bjJ-0)
 
